@@ -24,6 +24,9 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+
+// validateCred function checks to see if if a given array of numbers is a valid credit card number
+// Returns true or false.
 const validateCred = (arr) => {
   let digitsSum = 0
   let alternator = 1
@@ -44,18 +47,37 @@ const validateCred = (arr) => {
   return digitsSum % 10 === 0
 }
 
-console.log(`validateCred(valid1) result: ${validateCred(valid1)}`)
-console.log(`validateCred(valid2) result: ${validateCred(valid2)}`)
-console.log(`validateCred(valid3) result: ${validateCred(valid3)}`)
-console.log(`validateCred(valid4) result: ${validateCred(valid4)}`)
-console.log(`validateCred(valid5) result: ${validateCred(valid5)}`)
-console.log(`validateCred(invalid1) result: ${validateCred(invalid1)}`)
-console.log(`validateCred(invalid2) result: ${validateCred(invalid2)}`)
-console.log(`validateCred(invalid3) result: ${validateCred(invalid3)}`)
-console.log(`validateCred(invalid4) result: ${validateCred(invalid4)}`)
-console.log(`validateCred(invalid5) result: ${validateCred(invalid5)}`)
+// findInvalidCards function takes in a nested array of credit card number arrays
+// Returns a nested array of invalid card numbers from the given array.
+const findInvalidCards = (nestedArr) => {
+  let invalidNumArr = []
+  nestedArr.forEach(num => {
+    if (!validateCred(num)) {
+      const numArr = [num]
+      invalidNumArr.push(numArr)
+    }
+  })
+  return invalidNumArr
+}
 
+// Testing Section
 
+// validateCred function test lines:
+// console.log(`validateCred(valid1) result: ${validateCred(valid1)}`)
+// console.log(`validateCred(valid2) result: ${validateCred(valid2)}`)
+// console.log(`validateCred(valid3) result: ${validateCred(valid3)}`)
+// console.log(`validateCred(valid4) result: ${validateCred(valid4)}`)
+// console.log(`validateCred(valid5) result: ${validateCred(valid5)}`)
+// console.log(`validateCred(invalid1) result: ${validateCred(invalid1)}`)
+// console.log(`validateCred(invalid2) result: ${validateCred(invalid2)}`)
+// console.log(`validateCred(invalid3) result: ${validateCred(invalid3)}`)
+// console.log(`validateCred(invalid4) result: ${validateCred(invalid4)}`)
+// console.log(`validateCred(invalid5) result: ${validateCred(invalid5)}`)
+
+// findInvalidCards function test lines:
+// console.log('Argument sent to findInvalidCards [valid1, valid2, valid3, invalid1, invalid2, invalid3]')
+// console.log('Result should be [[4, 5, 3, 2, 7, 7, 8, 7, 7, 1, 0, 9, 1, 7, 9, 5],[5, 7, 9, 5, 5, 9, 3, 3, 9, 2, 1, 3, 4, 6, 4, 3],[3, 7, 5, 7, 9, 6, 0, 8, 4, 4, 5, 9, 9, 1, 4]')
+// console.log(`Result: ${findInvalidCards([valid1,valid2,valid3,invalid1,invalid2,invalid3])}`)
 
 
 
